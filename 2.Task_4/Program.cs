@@ -21,7 +21,7 @@ namespace _2.Task_4
             {
                 if (currentNumber % divisorOne == 0 | currentNumber % divisorTwo == 0)
                 {
-                    Console.WriteLine(currentNumber + "  является кратным 3 или 5");
+                    Console.WriteLine(currentNumber + "  является кратным " + divisorOne + " или " + divisorTwo);
                     summNumbers += currentNumber;
                 }
             }
