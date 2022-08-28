@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,28 +12,23 @@ namespace _2.Task_8
         {
             string secretPhrase = "SECRET PHRACE";
             string passwordToSecretPhrase = "password";
-            string userInputPasswordToSecretPhrase;
-            int maxNumberOfAttempts = 3;
-                       
-            for (int i=0; i<maxNumberOfAttempts; i++)
-            {
-                Console.WriteLine("If you want see secret phrase please input the password\n You have a " + (maxNumberOfAttempts-i) + " attempts" );
-                userInputPasswordToSecretPhrase = Console.ReadLine();
-                
-                if (i==maxNumberOfAttempts-1)
-                {
-                    Console.WriteLine("Incorrect password. Last attempt");
-                }
+            string userInputPasswordToSecretPhrase ="";
+            int maxAttempts=3;
 
-                else if (userInputPasswordToSecretPhrase == passwordToSecretPhrase)
-                {
-                    Console.WriteLine(secretPhrase);
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect password. Last attempt");
-                }
+            while ((userInputPasswordToSecretPhrase != passwordToSecretPhrase) && maxAttempts>0)
+            {
+                Console.WriteLine("If you want see secret phrase please input the password\n You have a " + (maxAttempts) + " attempts.");
+                userInputPasswordToSecretPhrase = Console.ReadLine();
+                maxAttempts--;  
             }
+            if (maxAttempts==0)
+            {
+                Console.WriteLine("attempts is end. Goodbuy");
+            }
+            else
+            {
+                Console.WriteLine(secretPhrase);
+            }                
         }
     }
 }
