@@ -25,7 +25,8 @@ namespace _2.Task_4
                     summNumbers += currentNumber;
                 }
             }
-            Console.WriteLine("Сумма всех положительных чисел меньше " + number + ", кратных 3 или 5 равна " + summNumbers);
+
+            Console.WriteLine("Сумма всех положительных чисел меньше " + number + ", кратных" + divisorOne + "или" + divisorTwo + " равна " + summNumbers);
         }
     }
 }
