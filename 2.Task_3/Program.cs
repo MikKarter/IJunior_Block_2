@@ -13,9 +13,7 @@ namespace _2.Task_3
             int lastNumber = 96;
             int firstNumber = 5;
             int increaseByThisNumber = 7;
-            int numberForInputOnScreen;
-            numberForInputOnScreen = firstNumber;
-
+            
             for (int i = firstNumber; i <= lastNumber; i +=increaseByThisNumber)
             {
                 Console.WriteLine(i);
