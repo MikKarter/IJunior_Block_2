@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,13 +14,11 @@ namespace _2.Task_3
             int firstNumber = 5;
             int increaseByThisNumber = 7;
             int numberForInputOnScreen;
-
             numberForInputOnScreen = firstNumber;
-            Console.WriteLine(numberForInputOnScreen);
-            while (numberForInputOnScreen != lastNumber)
+
+            for (int i = firstNumber; i <= lastNumber; i +=increaseByThisNumber)
             {
-                numberForInputOnScreen = numberForInputOnScreen + increaseByThisNumber;
-                Console.WriteLine(numberForInputOnScreen);
+                Console.WriteLine(i);
             }
         }
     }
