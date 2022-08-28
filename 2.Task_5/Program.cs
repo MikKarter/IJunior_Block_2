@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +20,7 @@ namespace _2.Task_5
             string infoSelectedForRecieve;
             int rubToUsd = 64;
             int rubToCny = 10;
-            int usdToCny = 15;
+            float usdToCny = 0.15f;
             bool finishedTheUseConverter = false;
             int userContinueChoice;
 
@@ -46,74 +46,121 @@ namespace _2.Task_5
                     Console.WriteLine("Обмениваем рубли на рубли? Вы в своём уме??? Убирайтесь!!!");
                 }
 
-                if (userSelectedForExchange == 2 & userSelectedForRecieve == 2)
+                else if (userSelectedForExchange == 2 & userSelectedForRecieve == 2)
                 {
                     Console.WriteLine("Обмениваем доллары на доллары? Вы в своём уме??? Убирайтесь!!!");
                 }
 
-                if (userSelectedForExchange == 3 & userSelectedForRecieve == 3)
+                else if (userSelectedForExchange == 3 & userSelectedForRecieve == 3)
                 {
                     Console.WriteLine("Обмениваем юани на юани? Вы в своём уме??? Убирайтесь!!!");
                 }
 
-                if (userSelectedForExchange == 1 & userSelectedForRecieve == 2)
+                else if (userSelectedForExchange == 1 & userSelectedForRecieve == 2)
                 {
                     Console.WriteLine("Обмениваем рубли на доллары? Хорошо! Сколько рублей обмениваем?");
                     amountToConvert = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Принято! Обменяли " + amountToConvert + " рублей на доллары");
-                    userRub -= amountToConvert;
-                    userUsd += amountToConvert / rubToUsd;
-                    Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+
+                    if ((userRub - amountToConvert) < 0)
+                    {
+                        Console.WriteLine("Недостаточно валюты для обмена");
+                    }
+                    else
+                    {
+                        userRub -= amountToConvert;
+                        userUsd += amountToConvert / rubToUsd;
+                        Console.WriteLine("Принято! Обменяли " + amountToConvert + " рублей на доллары");
+                        Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    }
                 }
 
-                if (userSelectedForExchange == 1 & userSelectedForRecieve == 3)
+                else if (userSelectedForExchange == 1 & userSelectedForRecieve == 3)
                 {
                     Console.WriteLine("Обмениваем рубли на юани? Хорошо! Сколько рублей обмениваем?");
                     amountToConvert = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Принято! Обменяли " + amountToConvert + " рублей на юани");
-                    userRub -= amountToConvert;
-                    userCny += amountToConvert / rubToCny;
-                    Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+
+
+                    if ((userRub - amountToConvert) < 0)
+                    {
+                        Console.WriteLine("Недостаточно валюты для обмена");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Принято! Обменяли " + amountToConvert + " рублей на юани");
+                        userRub -= amountToConvert;
+                        userCny += amountToConvert / rubToCny;
+                        Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    }
                 }
 
-                if (userSelectedForExchange == 2 & userSelectedForRecieve == 1)
+                else if (userSelectedForExchange == 2 & userSelectedForRecieve == 1)
                 {
                     Console.WriteLine("Обмениваем доллары на рубли? Хорошо! Сколько долларов обмениваем?");
                     amountToConvert = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Принято! Обменяли " + amountToConvert + " долларов на рубли");
-                    userUsd -= amountToConvert;
-                    userRub += amountToConvert * rubToUsd;
-                    Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+
+                    if ((userUsd - amountToConvert) < 0)
+                    {
+                        Console.WriteLine("Недостаточно валюты для обмена");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Принято! Обменяли " + amountToConvert + " долларов на рубли");
+                        userUsd -= amountToConvert;
+                        userRub += rubToUsd / amountToConvert;
+                        Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    }
                 }
 
-                if (userSelectedForExchange == 2 & userSelectedForRecieve == 3)
+                else if (userSelectedForExchange == 2 & userSelectedForRecieve == 3)
                 {
                     Console.WriteLine("Обмениваем доллары на юани? Хорошо! Сколько долларов обмениваем?");
                     amountToConvert = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Принято! Обменяли " + amountToConvert + " долларов на юани");
-                    userUsd -= amountToConvert;
-                    userCny += amountToConvert * usdToCny;
-                    Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+
+                    if ((userUsd - amountToConvert) < 0)
+                    {
+                        Console.WriteLine("Недостаточно валюты для обмена");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Принято! Обменяли " + amountToConvert + " долларов на юани");
+                        userUsd -= amountToConvert;
+                        userCny += usdToCny / amountToConvert;
+                        Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    }
                 }
 
-                if (userSelectedForExchange == 3 & userSelectedForRecieve == 1)
+                else if (userSelectedForExchange == 3 & userSelectedForRecieve == 1)
                 {
                     Console.WriteLine("Обмениваем юани на рубли? Хорошо! Сколько юаней обмениваем?");
                     amountToConvert = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Принято! Обменяли " + amountToConvert + " юаней на рубли");
-                    userCny -= amountToConvert;
-                    userRub += amountToConvert * rubToCny;
-                    Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    if ((userCny - amountToConvert) < 0)
+                    {
+                        Console.WriteLine("Недостаточно валюты для обмена");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Принято! Обменяли " + amountToConvert + " юаней на рубли");
+                        userCny -= amountToConvert;
+                        userRub += rubToCny / amountToConvert;
+                        Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    }
                 }
 
-                if (userSelectedForExchange == 1 & userSelectedForRecieve == 3)
+                else if (userSelectedForExchange == 3 & userSelectedForRecieve == 2)
                 {
                     Console.WriteLine("Обмениваем юани на доллары? Хорошо! Сколько юаней обмениваем?");
                     amountToConvert = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Принято! Обменяли " + amountToConvert + " юаней на доллары");
-                    userCny -= amountToConvert;
-                    userUsd += amountToConvert / usdToCny;
-                    Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    if ((userCny - amountToConvert) < 0)
+                    {
+                        Console.WriteLine("Недостаточно валюты для обмена");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Принято! Обменяли " + amountToConvert + " юаней на доллары");
+                        userCny -= amountToConvert;
+                        userUsd += usdToCny/amountToConvert;
+                        Console.WriteLine("Теперь у вас на балансе: \n" + userRub + "рублей, \n" + userUsd + " долларов,\n" + userCny + " юаней");
+                    }
                 }
 
                 Console.WriteLine("Будем обменивать что то ещё?");
