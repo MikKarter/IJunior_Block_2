@@ -4,38 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2.Task_8
+namespace _2.Task_9
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string secretPhrase = "SECRET PHRACE";
-            string passwordToSecretPhrase = "password";
-            string userInput ="";
-            int maxAttempts=3;
-            int attemptsLeft;
+           Random randomForNumberN= new Random();
+           
+            int numberN = randomForNumberN.Next(1,28);
+            int counterNumbersMultiplesN = 0;
+            int summNumberN = 0;
+            int lowerRangeLimit = 100;
+            int upperRangeLimit = 999;
 
-            for (int i = 0; i <= maxAttempts; i++)
+            Console.WriteLine(numberN);
+            
+            for (int i = lowerRangeLimit;lowerRangeLimit<=i&i<=upperRangeLimit; i+=numberN)
             {
-                attemptsLeft = maxAttempts - i;
-
-                if (attemptsLeft == 0)
-                {
-                    Console.WriteLine("attempts is end. Goodbuy");
-                }
-
-                else if (userInput == passwordToSecretPhrase)
-                {
-                    Console.WriteLine(secretPhrase);
-                }
-                
-                else if (userInput != passwordToSecretPhrase)
-                {
-                    Console.WriteLine("If you want see secret phrase please input the password\n You have a " + (attemptsLeft) + " attempts.");
-                    userInput = Console.ReadLine();
-                }
-            }            
+                    counterNumbersMultiplesN++;
+            }
+            
+            Console.WriteLine(counterNumbersMultiplesN);
         }
     }
 }
