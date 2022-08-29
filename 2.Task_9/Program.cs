@@ -10,22 +10,25 @@ namespace _2.Task_9
     {
         static void Main(string[] args)
         {
-           Random randomForNumberN= new Random();
-           
-            int numberN = randomForNumberN.Next(1,28);
+           Random randomForNumberN = new Random();
+
+            int loverGivenRange = 1;
+            int hiverGivenRange = 28;
+            int numberN = randomForNumberN.Next(loverGivenRange,hiverGivenRange);
             int counterNumbersMultiplesN = 0;
-            int summNumberN = 0;
             int lowerRangeLimit = 100;
             int upperRangeLimit = 999;
 
-            Console.WriteLine(numberN);
+            Console.WriteLine("Random generated number is " +numberN);
             
-            for (int i = lowerRangeLimit;lowerRangeLimit<=i&i<=upperRangeLimit; i+=numberN)
+            for (int i = 0;i<=upperRangeLimit; i+=numberN)
             {
+                if (i>=lowerRangeLimit)
+                { 
                     counterNumbersMultiplesN++;
+                }
             }
-            
-            Console.WriteLine(counterNumbersMultiplesN);
+            Console.WriteLine("Amount numbers, multiples number " + numberN + "equals " +counterNumbersMultiplesN);
         }
     }
 }
