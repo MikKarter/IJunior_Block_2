@@ -12,23 +12,30 @@ namespace _2.Task_8
         {
             string secretPhrase = "SECRET PHRACE";
             string passwordToSecretPhrase = "password";
-            string userInputPasswordToSecretPhrase ="";
+            string userInput ="";
             int maxAttempts=3;
+            int attemptsLeft;
 
-            while ((userInputPasswordToSecretPhrase != passwordToSecretPhrase) && maxAttempts>0)
+            for (int i = 0; i <= maxAttempts; i++)
             {
-                Console.WriteLine("If you want see secret phrase please input the password\n You have a " + (maxAttempts) + " attempts.");
-                userInputPasswordToSecretPhrase = Console.ReadLine();
-                maxAttempts--;  
-            }
-            if (maxAttempts==0)
-            {
-                Console.WriteLine("attempts is end. Goodbuy");
-            }
-            else
-            {
-                Console.WriteLine(secretPhrase);
-            }                
+                attemptsLeft = maxAttempts - i;
+
+                if (attemptsLeft == 0)
+                {
+                    Console.WriteLine("attempts is end. Goodbuy");
+                }
+
+                else if (userInput == passwordToSecretPhrase)
+                {
+                    Console.WriteLine(secretPhrase);
+                }
+                
+                else if (userInput != passwordToSecretPhrase)
+                {
+                    Console.WriteLine("If you want see secret phrase please input the password\n You have a " + (attemptsLeft) + " attempts.");
+                    userInput = Console.ReadLine();
+                }
+            }            
         }
     }
 }
