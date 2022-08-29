@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,30 +13,34 @@ namespace _2.Task_11
             string userSymbolString;
             Console.WriteLine("Please input you symbol string. Use only '(' and ')' symbols");
             userSymbolString = Console.ReadLine();
-          
-            int counterSymbolOne = 0;
-            int counterSymbolTwo = 0;
 
-            foreach (var i in userSymbolString)
+            int counterUserStringDeep = 0;
+            int counterSymbolsDifference = 0;
+            char userSybmolOne = '(';
+            char userSymbolTwo = ')';
+
+            foreach (var everyTextSymbol in userSymbolString)
             {
+                if (counterSymbolsDifference >= 0)
+                {                    
+                    if (everyTextSymbol == userSybmolOne)
+                    {
+                        counterSymbolsDifference++;
+                        counterUserStringDeep++;
+                    }
 
-                if (i=='(')
-                {
-                    counterSymbolOne++;
-
+                    else if (everyTextSymbol == userSymbolTwo && counterSymbolsDifference >= 0)
+                    {
+                        counterSymbolsDifference--;
+                    }
                 }
-                else if (i==')')
-                {
-                    counterSymbolTwo++;
-                }                
+            }
+
+            if (counterSymbolsDifference == 0)
+            {
+                Console.WriteLine("Deep of user symbols is " + counterUserStringDeep);
             }
             
-            if (counterSymbolOne == counterSymbolTwo)
-            {
-                Console.WriteLine("String is correct");
-                Console.WriteLine("Counter of deep - " + counterSymbolTwo);
-            }
-
             else
             {
                 Console.WriteLine("String is uncorrect");
