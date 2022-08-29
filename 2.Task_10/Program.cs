@@ -11,7 +11,9 @@ namespace _2.Task_10
         static void Main(string[] args)
         {
             Random randomNumber = new Random();
-            int mainRandomNumber = randomNumber.Next(0, 100);
+            int loverGivenRange = 0;
+            int hiverGivenRange = 100;
+            int mainRandomNumber = randomNumber.Next(loverGivenRange, (hiverGivenRange+1));
             int degreeOfNumber = 0;
             int conditionalNumber = 2;
             int conditionalNumberInDegree = 1;
