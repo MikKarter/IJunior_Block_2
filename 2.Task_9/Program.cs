@@ -1,36 +1,41 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2.Task_9
+namespace _2.Task_8
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-           Random randomForNumberN= new Random();
-           
-            int numberN = randomForNumberN.Next(1,28);
-            int counterNumbersMultiplesN = 0;
-            int summNumberN = 0;
+            string secretPhrase = "SECRET PHRACE";
+            string passwordToSecretPhrase = "password";
+            string userInput ="";
+            int maxAttempts=3;
+            int attemptsLeft;
 
-            Console.WriteLine(numberN);
-
-            for (int i = 100;100<=i&i<=999; i++)
+            for (int i = 0; i <= maxAttempts; i++)
             {
-                while (summNumberN<100)
+                attemptsLeft = maxAttempts - i;
+
+                if (attemptsLeft == 0)
                 {
-                    summNumberN += numberN;
+                    Console.WriteLine("attempts is end. Goodbuy");
                 }
-                if (summNumberN >= 100 & summNumberN < 1000)
+
+                else if (userInput == passwordToSecretPhrase)
                 {
-                    counterNumbersMultiplesN++;
-                    summNumberN += numberN;
+                    Console.WriteLine(secretPhrase);
                 }
-            }
-            Console.WriteLine(counterNumbersMultiplesN);
+                
+                else if (userInput != passwordToSecretPhrase)
+                {
+                    Console.WriteLine("If you want see secret phrase please input the password\n You have a " + (attemptsLeft) + " attempts.");
+                    userInput = Console.ReadLine();
+                }
+            }            
         }
     }
 }
