@@ -13,8 +13,8 @@ namespace _2.Task_9
            Random randomForNumberN = new Random();
 
             int loverGivenRange = 1;
-            int hiverGivenRange = 28;
-            int numberN = randomForNumberN.Next(loverGivenRange,hiverGivenRange);
+            int hiverGivenRange = 27;
+            int numberN = randomForNumberN.Next(loverGivenRange,(hiverGivenRange+1));
             int counterNumbersMultiplesN = 0;
             int lowerRangeLimit = 100;
             int upperRangeLimit = 999;
