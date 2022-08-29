@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +12,19 @@ namespace _2.Task_10
         {
             Random randomNumber = new Random();
             int mainRandomNumber = randomNumber.Next(0, 100);
-            int theDegree = 0;
-            int numberTwo = 2;
-            int numberTwoInDegree= 1;
+            int degreeOfNumber = 0;
+            int conditionalNumber = 2;
+            int conditionalNumberInDegree = 1;
 
-            while (numberTwoInDegree < mainRandomNumber)
+            while (conditionalNumberInDegree < mainRandomNumber)
             {
-                numberTwoInDegree = numberTwoInDegree * numberTwo;
-                theDegree++;
+                conditionalNumberInDegree *= conditionalNumber;
+                degreeOfNumber++;
             }
 
             Console.WriteLine("Random number is " + mainRandomNumber);
-            Console.WriteLine("The minimum number (" +numberTwo + "^N) that is greater than " + mainRandomNumber + " that " + numberTwoInDegree);
-            Console.WriteLine("To get this number, you need to raise " +numberTwo +" to the degree " + theDegree);
+            Console.WriteLine("The minimum number (" + conditionalNumber + "^N) that is greater than " + mainRandomNumber + " that " + conditionalNumberInDegree);
+            Console.WriteLine("To get this number, you need to raise " + conditionalNumber + " to the degree " + degreeOfNumber);
         }
     }
 }
