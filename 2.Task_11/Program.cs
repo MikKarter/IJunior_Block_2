@@ -16,34 +16,43 @@ namespace _2.Task_11
 
             int counterUserStringDeep = 0;
             int counterSymbolsDifference = 0;
-            char userSybmolOne = '(';
+            char userSymbolOne = '(';
             char userSymbolTwo = ')';
 
             foreach (var everyTextSymbol in userSymbolString)
             {
                 if (counterSymbolsDifference >= 0)
-                {                    
-                    if (everyTextSymbol == userSybmolOne)
+                {
+                    if (everyTextSymbol == userSymbolOne)
                     {
                         counterSymbolsDifference++;
-                        counterUserStringDeep++;
                     }
 
-                    else if (everyTextSymbol == userSymbolTwo && counterSymbolsDifference >= 0)
+                    else if (everyTextSymbol == userSymbolTwo)
                     {
+                        if (counterUserStringDeep < counterSymbolsDifference)
+                        {
+                            counterUserStringDeep = counterSymbolsDifference;
+                        }
+                        
                         counterSymbolsDifference--;
                     }
                 }
             }
 
+            if (counterSymbolsDifference < 0)
+            {
+                Console.WriteLine("String is uncorrect");
+            }
+
+            if (counterSymbolsDifference > 0)
+            {
+                Console.WriteLine("String is uncorrect");
+            }
+
             if (counterSymbolsDifference == 0)
             {
                 Console.WriteLine("Deep of user symbols is " + counterUserStringDeep);
-            }
-            
-            else
-            {
-                Console.WriteLine("String is uncorrect");
             }
         }
     }
