@@ -29,10 +29,14 @@ namespace _2.Task_12
             int playerSpellFunOfSpikes = 400;
             int playerSummonElSohraDamage = 275;
             int playerSummonCounter = 0;
-            int countersSkipPlayerStepsAfterCastSpell4Name = 0;
             int firstTurnToAttack = randomTurnToAttack.Next(1, 3);
             int bossSkipStepCounter = 0;
             int playerSkipStepCounter = 0;
+
+            int counterSkipStepsAfterActiveSpell2Name = 2;
+            int counterSkipStepsAfterActiveSpell3Name = 2;
+            int counterSkipStepsAfterActiveSpell4Name = 2;
+            int countersSkipPlayerStepsAfterCastSpell4Name = 0;
 
             bool playerSpellSummonElSohra = false;
             bool playerTurnToAttack = false;
@@ -60,7 +64,7 @@ namespace _2.Task_12
             Console.WriteLine("You can cast next spell to atack " + bossName);
             Console.WriteLine("1 - " + activeSpell1Name + ". You can scare the " + bossName + " and he can't attack next 2 steps");
             Console.WriteLine("2 - " + activeSpell2Name + ". You can cast suffocation to " + bossName);
-            Console.WriteLine("3 - " + activeSpell3Name + ". You can summon you personal mushroom-pet for attack" + bossName + ". WARNING! YOU CAN'T ATTACK NEXT 2 STEPS AFTER SUMMON " + playerSummonName);
+            Console.WriteLine("3 - " + activeSpell3Name + ". You can summon you personal mushroom-pet for attack" + bossName + ". WARNING! YOU CAN'T ATTACK NEXT " + counterSkipStepsAfterActiveSpell2Name + "STEPS AFTER SUMMON " + playerSummonName);
             Console.WriteLine("4 - " + activeSpell4Name + ". A lot of power you spell. You can cast this only once from 3 steps and only after summon " + playerSummonName);
             Console.WriteLine("5 - And of cource you can attack " + bossName + " you hands if you want");
             Console.WriteLine("You also have a passive " + passiveSpell1Name + " " + playerSpellPassiveWaterHealth + " each turn");
@@ -93,7 +97,7 @@ namespace _2.Task_12
                             Console.WriteLine(playerSummonName + " have " + playerSummonHealth + " health!");
                         }
                     }
-                   
+
                     else if (bossSkipStepCounter > 0)
                     {
                         Console.WriteLine(bossName + " scared and can't attack next " + bossSkipStepCounter + " steps!");
@@ -130,7 +134,7 @@ namespace _2.Task_12
                         switch (userPlayerController)
                         {
                             case "1":
-                                bossSkipStepCounter += 2;
+                                bossSkipStepCounter += counterSkipStepsAfterActiveSpell2Name;
                                 Console.WriteLine("You scared " + bossName + "!\n" + bossName + " can't attack next " + bossSkipStepCounter + " steps!");
                                 break;
                             case "2":
@@ -148,7 +152,7 @@ namespace _2.Task_12
                                 Console.WriteLine("You cast " + activeSpell3Name + " to you help");
                                 playerSpellSummonElSohra = true;
                                 playerSummonCounter++;
-                                playerSkipStepCounter = 2;
+                                playerSkipStepCounter += counterSkipStepsAfterActiveSpell3Name;
                                 Console.WriteLine("After " + activeSpell3Name + "you skip next " + playerSkipStepCounter + " steps");
                                 Console.WriteLine("ATTENTION! Unlocked spell " + activeSpell4Name);
                                 break;
@@ -158,7 +162,7 @@ namespace _2.Task_12
                                     Console.WriteLine("You cast " + activeSpell4Name + " and deals boss " + playerSpellFunOfSpikes + " damage!");
                                     bossHealth -= playerSpellFunOfSpikes;
                                     Console.WriteLine(bossName + " have " + bossHealth + " HP");
-                                    countersSkipPlayerStepsAfterCastSpell4Name = 2;
+                                    countersSkipPlayerStepsAfterCastSpell4Name += counterSkipStepsAfterActiveSpell4Name = 2;
                                 }
 
                                 else if (countersSkipPlayerStepsAfterCastSpell4Name > 0 & playerSpellSummonElSohra == true)
@@ -166,6 +170,7 @@ namespace _2.Task_12
                                     Console.WriteLine("You can't cast " + activeSpell4Name + " " + countersSkipPlayerStepsAfterCastSpell4Name + " more steps!");
                                     countersSkipPlayerStepsAfterCastSpell4Name--;
                                 }
+
                                 break;
                             case "5":
                                 Console.WriteLine("Believing in yourself, you hit the boss with your hand right in the face");
@@ -177,7 +182,6 @@ namespace _2.Task_12
                                 break;
                         }
 
-                        //Restore player and summon HP with help passive spell water regen;
                         playerHealth = playerSpellPassiveWaterHealth * playerSpellPassiveWaterHealth + playerHealth;
 
                         if (playerSpellSummonElSohra == true)
