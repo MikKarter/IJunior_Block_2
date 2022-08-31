@@ -34,7 +34,7 @@ namespace _2.Task_12
             int playerSkipStepCounter = 0;
 
             int counterSkipStepsAfterActiveSpell2Name = 2;
-            int counterSkipStepsAfterActiveSpell3Name = 2;
+            int counterSkipStepsAfterActiveSpell3Name = 3;
             int counterSkipStepsAfterActiveSpell4Name = 2;
             int countersSkipPlayerStepsAfterCastSpell4Name = 0;
 
@@ -62,10 +62,10 @@ namespace _2.Task_12
             }
 
             Console.WriteLine("You can cast next spell to atack " + bossName);
-            Console.WriteLine("1 - " + activeSpell1Name + ". You can scare the " + bossName + " and he can't attack next 2 steps");
+            Console.WriteLine("1 - " + activeSpell1Name + ". You can scare the " + bossName + " and he can't attack next " + counterSkipStepsAfterActiveSpell2Name + " steps");
             Console.WriteLine("2 - " + activeSpell2Name + ". You can cast suffocation to " + bossName);
             Console.WriteLine("3 - " + activeSpell3Name + ". You can summon you personal mushroom-pet for attack" + bossName + ". WARNING! YOU CAN'T ATTACK NEXT " + counterSkipStepsAfterActiveSpell2Name + "STEPS AFTER SUMMON " + playerSummonName);
-            Console.WriteLine("4 - " + activeSpell4Name + ". A lot of power you spell. You can cast this only once from 3 steps and only after summon " + playerSummonName);
+            Console.WriteLine("4 - " + activeSpell4Name + ". A lot of power you spell. You can cast this only once from " + counterSkipStepsAfterActiveSpell3Name + " steps and only after summon " + playerSummonName);
             Console.WriteLine("5 - And of cource you can attack " + bossName + " you hands if you want");
             Console.WriteLine("You also have a passive " + passiveSpell1Name + " " + playerSpellPassiveWaterHealth + " each turn");
 
