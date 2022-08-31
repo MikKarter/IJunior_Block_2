@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,12 +46,12 @@ namespace _2.Task_12
             Console.WriteLine("Welcom to final battle " + playerName + "!");
             Console.WriteLine("Boss - " + bossName + "!");
 
-            //Who turn to attack first?
             if (firstTurnToAttack == 1)
             {
                 playerTurnToAttack = true;
 
             }
+
             else
             {
                 bossTurnToAttack = true;
@@ -65,16 +65,20 @@ namespace _2.Task_12
             Console.WriteLine("5 - And of cource you can attack " + bossName + " you hands if you want");
             Console.WriteLine("You also have a passive " + passiveSpell1Name + " " + playerSpellPassiveWaterHealth + " each turn");
 
-            while (playerHealth > 0 & bossHealth > 0)
+            while (playerHealth > 0 && bossHealth > 0)
             {
-                //Boss attack 
-                while (bossTurnToAttack == true)
+                if (bossHealth <= 0)
                 {
-                    if (bossHealth <= 0)
-                    {
-                        break;
-                    }
+                    bossTurnToAttack = false;
+                }
 
+                if (playerHealth <= 0)
+                {
+                    playerTurnToAttack = false;
+                }
+
+                while (bossTurnToAttack == true && bossHealth > 0)
+                {
                     if (bossSkipStepCounter == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine(bossName + " turn to attack!"); Console.ResetColor();
@@ -82,7 +86,6 @@ namespace _2.Task_12
                         playerHealth -= bossDamage;
                         Console.WriteLine("You have " + playerHealth + " health");
 
-                        //if player summon of summon - boss attack the summon
                         if (playerSpellSummonElSohra == true)
                         {
                             Console.WriteLine(bossName + " also deals your " + playerSummonName + " " + bossDamage + " damage!");
@@ -90,25 +93,23 @@ namespace _2.Task_12
                             Console.WriteLine(playerSummonName + " have " + playerSummonHealth + " health!");
                         }
                     }
+                   
                     else if (bossSkipStepCounter > 0)
                     {
                         Console.WriteLine(bossName + " scared and can't attack next " + bossSkipStepCounter + " steps!");
                     }
 
-                    // if boss kill summon lock activeSpell4Name
                     if (playerSummonHealth <= 0)
                     {
                         Console.WriteLine(playerSummonName + " is dead...");
                         playerSpellSummonElSohra = false;
                     }
 
-                    //Boss Skip Steps Counter can't will be more than 0
                     if (bossSkipStepCounter < 0)
                     {
                         bossSkipStepCounter = 0;
                     }
 
-                    //After boss step decrement the bossSkipStepCounter
                     else if (bossSkipStepCounter > 0)
                     {
                         bossSkipStepCounter--;
@@ -118,22 +119,14 @@ namespace _2.Task_12
                     playerTurnToAttack = true;
                 }
 
-                //Player attack 
-                while (playerTurnToAttack == true)
+                while (playerTurnToAttack == true && playerHealth > 0)
                 {
-                    
-                    if (playerHealth <=0)
-                    {
-                        break;
-                    }
-
                     if (playerSkipStepCounter == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("You turn to attack!"); Console.ResetColor();
                         Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("Push the spell number!"); Console.ResetColor();
                         userPlayerController = Console.ReadLine();
 
-                        //Player attack controller
                         switch (userPlayerController)
                         {
                             case "1":
@@ -147,7 +140,6 @@ namespace _2.Task_12
                                 break;
                             case "3":
 
-                                //player can't summone more than playerSummonCounter
                                 if (playerSpellSummonElSohra == true)
                                 {
                                     Console.WriteLine("You can't summon more " + playerSummonCounter + " summon");
@@ -168,6 +160,7 @@ namespace _2.Task_12
                                     Console.WriteLine(bossName + " have " + bossHealth + " HP");
                                     countersSkipPlayerStepsAfterCastSpell4Name = 2;
                                 }
+
                                 else if (countersSkipPlayerStepsAfterCastSpell4Name > 0 & playerSpellSummonElSohra == true)
                                 {
                                     Console.WriteLine("You can't cast " + activeSpell4Name + " " + countersSkipPlayerStepsAfterCastSpell4Name + " more steps!");
@@ -183,10 +176,10 @@ namespace _2.Task_12
                                 Console.WriteLine("Please input correct number spells to attack");
                                 break;
                         }
-                        
+
                         //Restore player and summon HP with help passive spell water regen;
                         playerHealth = playerSpellPassiveWaterHealth * playerSpellPassiveWaterHealth + playerHealth;
-                        
+
                         if (playerSpellSummonElSohra == true)
                         {
                             playerSummonHealth = playerSpellPassiveWaterHealth * playerSpellPassiveWaterHealth + playerSummonHealth;
@@ -200,13 +193,11 @@ namespace _2.Task_12
                         Console.WriteLine("You can't attack next " + playerSkipStepCounter + " steps!");
                     }
 
-                    //Player Skip Steps Counter can't will be more than 0
                     if (playerSkipStepCounter < 0)
                     {
                         playerSkipStepCounter = 0;
                     }
 
-                    //After player step decrement the playerSkipStepCounter
                     else if (playerSkipStepCounter > 0)
                     {
                         playerSkipStepCounter--;
@@ -216,7 +207,6 @@ namespace _2.Task_12
                     playerTurnToAttack = false;
                 }
 
-                //Summon atack
                 if (playerSpellSummonElSohra == true)
                 {
                     Console.WriteLine(playerSummonName + " attack!");
@@ -224,31 +214,29 @@ namespace _2.Task_12
                     Console.WriteLine(bossName + " have " + bossHealth + " HP");
                 }
 
-                //Check possibility player steps
-                if (playerSkipStepCounter > 0)
-                {
-                    playerSkipStepCounter--;
-                    playerTurnToAttack = false;
-                }
-                else if (playerSkipStepCounter == 0)
-                {
-                    playerTurnToAttack = true;
-                }
-
-                //Check possibility boss steps
                 if (bossSkipStepCounter > 0)
                 {
                     bossSkipStepCounter--;
                     bossTurnToAttack = false;
                 }
+
                 else if (bossSkipStepCounter == 0)
                 {
                     bossTurnToAttack = true;
                 }
 
+                if (playerSkipStepCounter > 0)
+                {
+                    playerSkipStepCounter--;
+                    playerTurnToAttack = false;
+                }
+
+                else if (playerSkipStepCounter == 0)
+                {
+                    playerTurnToAttack = true;
+                }
             }
 
-            //Choose the winner
             if (playerHealth <= 0)
             {
                 Console.WriteLine(bossName + " wins!");
